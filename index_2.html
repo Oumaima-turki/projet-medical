@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle de la répétabilité</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Lien vers le fichier CSS -->
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        // Fonction pour calculer et afficher les résultats
+        function calculerAcceptabilite() {
+            // Récupérer les valeurs des tensions mesurées
+            var tensionsMesurees = [];
+            for (var i = 1; i <= 5; i++) {
+                tensionsMesurees.push(parseFloat(document.getElementById("Umes" + i).value));
+            }
+
+            // Calculer la moyenne des tensions mesurées
+            var somme = tensionsMesurees.reduce((a, b) => a + b, 0);
+            var moyenne = somme / tensionsMesurees.length;
+
+            // Calculer max, min, et l'erreur avec la nouvelle formule
+            var maxTension = Math.max(...tensionsMesurees);
+            var minTension = Math.min(...tensionsMesurees);
+            var erreur = ((maxTension - minTension) / moyenne) * 100;
+
+            // Vérifier si l'erreur est dans la tolérance
+            var tolerence = parseFloat(document.getElementById("tolerance").value); // Tolérance en pourcentage
+            var estAcceptable = erreur <= tolerence ? "Acceptable" : "Rejeté";
+
+            // Affichage des résultats dans le tableau
+            var tableau = document.getElementById("resultatsTableau");
+            tableau.innerHTML = `
+                <tr>
+                    <th>Exposition</th>
+                    <th>Tension Mesurée (Umes)</th>
+                    <th>Moyenne des Expositions (kV)</th>
+                    <th>Critère d'Acceptabilité (Erreur %)</th>
+                    <th>Résultat</th>
+                </tr>
+            `; // Réinitialisation du tableau
+
+            tensionsMesurees.forEach((tension, index) => {
+                var row = tableau.insertRow();
+                row.insertCell(0).textContent = index + 1;
+                row.insertCell(1).textContent = tension + " kV";
+                row.insertCell(2).textContent = moyenne.toFixed(2) + " kV";
+                row.insertCell(3).textContent = erreur.toFixed(2) + " %";
+                row.insertCell(4).textContent = estAcceptable;
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Test 2: Contrôle de la répétabilité</h1>
+
+        <div class="content">
+            <h2>Paramètres fixes :</h2>
+            <form id="parametresForm">
+                <label for="kv">kV :</label>
+                <input type="number" id="kv" placeholder="Valeur en kV" required>
+                <label for="mas">mAs :</label>
+                <input type="number" id="mas" placeholder="Valeur de mAs" required>
+                <label for="distance">Distance (d) :</label>
+                <input type="number" id="distance" placeholder="Distance en cm" required>
+                <label for="tolerance">Tolérance (%):</label>
+                <input type="number" id="tolerance" placeholder="Ex. 10" value="10" required>
+            </form>
+
+            <h2>Entrer les tensions mesurées pour les 5 expositions :</h2>
+            <form id="tensionsForm">
+                <table>
+                    <tr>
+                        <th>Exposition</th>
+                        <th>Tension mesurée (Umes en kV)</th>
+                    </tr>
+                    <!-- Expositions 1 à 5 -->
+                    <tr>
+                        <td>1</td>
+                        <td><input type="number" id="Umes1" required></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="number" id="Umes2" required></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="number" id="Umes3" required></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="number" id="Umes4" required></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="number" id="Umes5" required></td>
+                    </tr>
+                </table>
+                <button type="button" onclick="calculerAcceptabilite()">Calculer l'acceptabilité</button>
+            </form>
+
+            <h3>Résultats des Expositions</h3>
+            <table id="resultatsTableau" border="1">
+                <tr>
+                    <th>Exposition</th>
+                    <th>Tension Mesurée (Umes)</th>
+                    <th>Moyenne des Expositions (kV)</th>
+                    <th>Critère d'Acceptabilité (Erreur %)</th>
+                    <th>Résultat</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
