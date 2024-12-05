@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle de la Linéarité du Rayonnement</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+        // Fonction pour calculer le critère d'acceptabilité
+        function calculerAcceptabilite() {
+            const mAsValues = [];
+            const kermaValues = [];
+            const tolerances = [];
+
+            for (let i = 1; i <= 5; i++) {
+                mAsValues.push(parseFloat(document.getElementById(`mAs${i}`).value));
+                kermaValues.push(parseFloat(document.getElementById(`kerma${i}`).value));
+            }
+
+            const ratioValues = kermaValues.map((kerma, index) => kerma / mAsValues[index]);
+            const moyenneRatio = ratioValues.reduce((a, b) => a + b, 0) / ratioValues.length;
+
+            // Calculer l'erreur pour chaque exposition
+            const resultats = ratioValues.map((ratio, index) => {
+                const erreur = (Math.abs(ratio - moyenneRatio) / moyenneRatio) * 100;
+                return {
+                    erreur: erreur.toFixed(2),
+                    acceptable: erreur <= 15 ? "Acceptable" : "Rejeté",
+                    kerma: kermaValues[index],
+                    ratio: ratio.toFixed(2),
+                };
+            });
+
+            // Afficher les résultats dans le tableau
+            const tableau = document.getElementById("resultatsTableau");
+            tableau.innerHTML = `
+                <tr>
+                    <th>Exposition</th>
+                    <th>mAs</th>
+                    <th>Kerma (mGy)</th>
+                    <th>Critère d'Acceptabilité (%)</th>
+                    <th>Résultat</th>
+                </tr>
+            `;
+
+            resultats.forEach((resultat, index) => {
+                const row = tableau.insertRow();
+                row.insertCell(0).textContent = index + 1;
+                row.insertCell(1).textContent = mAsValues[index];
+                row.insertCell(2).textContent = resultat.kerma.toFixed(2);
+                row.insertCell(3).textContent = resultat.erreur + " %";
+                row.insertCell(4).textContent = resultat.acceptable;
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Test 1:Contrôle de la Linéarité du Rayonnement</h1>
+
+        <div class="content">
+            <h2>Paramètres fixes :</h2>
+            <form>
+                <label for="kv">kV :</label>
+                <input type="number" id="kv" placeholder="Valeur en kV" required>
+                <label for="distance">Distance (cm) :</label>
+                <input type="number" id="distance" placeholder="Distance entre le tube et le détecteur" required>
+            </form>
+
+            <h2>Entrer les valeurs pour 5 expositions :</h2>
+            <form>
+                <table>
+                    <tr>
+                        <th>Exposition</th>
+                        <th>mAs</th>
+                        <th>Kerma (mGy)</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="number" id="mAs1" required></td>
+                        <td><input type="number" id="kerma1" required></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="number" id="mAs2" required></td>
+                        <td><input type="number" id="kerma2" required></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="number" id="mAs3" required></td>
+                        <td><input type="number" id="kerma3" required></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="number" id="mAs4" required></td>
+                        <td><input type="number" id="kerma4" required></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="number" id="mAs5" required></td>
+                        <td><input type="number" id="kerma5" required></td>
+                    </tr>
+                </table>
+                <button type="button" onclick="calculerAcceptabilite()">Calculer l'acceptabilité</button>
+            </form>
+
+            <h3>Résultats des Expositions</h3>
+            <table id="resultatsTableau">
+                <tr>
+                    <th>Exposition</th>
+                    <th>mAs</th>
+                    <th>Kerma (mGy)</th>
+                    <th>Critère d'Acceptabilité (%)</th>
+                    <th>Résultat</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

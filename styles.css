@@ -1,0 +1,113 @@
+/* Style global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style pour le conteneur principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Titres */
+h1, h2, h3 {
+    color: #34495e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style pour le formulaire */
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Bouton */
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Style pour les tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+table th {
+    background-color: #34495e;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Résultats des tableaux */
+#resultatsTableau tr th:nth-child(4), #resultatsTableau tr th:nth-child(5),
+#resultatsTableau tr td:nth-child(4), #resultatsTableau tr td:nth-child(5) {
+    font-weight: bold;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    form input[type="number"] {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
