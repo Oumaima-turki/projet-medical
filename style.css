@@ -1,0 +1,54 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('06f7874c-4cf9-49cd-8dfc-b9cec6507578.jpg'); /* Chemin de l'image */
+    background-size: cover; /* L'image couvre tout l'écran */
+    background-position: center; /* L'image est centrée */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Conteneur principal */
+.container {
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Titre principal */
+.title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Section des tests */
+.tests {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    color:rgb(41, 38, 38);
+}
+
+/* Style pour chaque test */
+.test {
+    padding: 15px;
+    background-color: #bce8ed; /* Couleur commune pour tous les tests */
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(25, 46, 186, 0.1);
+    text-align: center; /* Centre les titres et le contenu */
+}
+
+/* 4ème barre centrée */
+.test-centre {
+    grid-column: 1 / -1; /* S'étend sur toute la largeur */
+}
