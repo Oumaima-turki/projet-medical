@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IO - Connexion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('quality_assurance2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+          
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        .left-section h1 {
+            color: grey;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .left-section p {
+            font-size: 20px;
+            color: blanchedalmond;
+        }
+
+        .right-section {
+            flex: 1;
+            max-width: 400px;
+            
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px grey;
+        }
+
+        .right-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-section input {
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+        }
+
+        .right-section button {
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #187e7d;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .right-section button:hover {
+            background-color: #187e7d;
+        }
+
+        .right-section a {
+            text-decoration: none;
+            font-size: 14px;
+            color: blanchedalmond;
+            text-align: center;
+        }
+
+        .right-section a:hover {
+            text-decoration: underline;
+        }
+
+        .right-section .create-account {
+            background-color: #becfba;
+            margin-top: 15px;
+        }
+
+        .right-section .create-account:hover {
+            background-color: #becfba;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Section gauche -->
+        <div class="left-section">
+            <h1>QualIO</h1>
+            <p>"Votre Santé, Notre Engagement : L'Excellence en Qualité Médicale".</p>
+        </div>
+        <!-- Section droite -->
+        <div class="right-section">
+            <form>
+                <input type="text" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Log in</button>
+                <a href="#">Forgotten password?</a>
+                <button type="button" class="create-account">Create new account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
