@@ -1,0 +1,17 @@
+.navbar{
+    width: 100vw;
+    height: 20vh;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.nav-element{
+    font-family: 'Arial', sans-serif;
+    color: #34495e;
+    font-size: 30px;
+    cursor: pointer;
+}
+.nav-element:hover{
+    text-decoration: underline;
+}
