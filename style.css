@@ -1,4 +1,8 @@
 /* Styles généraux */
+a{
+    text-decoration: none;
+    color:rgb(41, 38, 38);
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
